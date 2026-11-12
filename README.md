@@ -33,3 +33,10 @@ The trade-off is that only a scalar offset per source is supported. Clock drift 
 A source that shares no correlation key with the reference cannot be aligned. It is left at offset `0.0` and listed by `unaligned_sources()` rather than being silently guessed at. If your logs do not carry a shared key, this library will report every non-reference source as unaligned; you will need to add a key to your records first.
 
 Duplicate keys are resolved by taking the first reference record seen for that key, so re-ingesting a log file in a different order does not change the offsets.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
