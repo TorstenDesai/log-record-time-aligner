@@ -1,6 +1,6 @@
 [project]
 name = "log-record-time-aligner"
-version = "0.1.0"
+version = "0.1.1"
 description = "Shifts each source's timestamps onto a common clock to align records."
 requires-python = ">=3.10"
 dependencies = []
